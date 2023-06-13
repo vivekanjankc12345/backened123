@@ -25,6 +25,28 @@ postrouter.get("/get",async(req,res)=>{
     res.send(err)
   }
 })
+postrouter.get("/sort",async(req,res)=>{
+  let que=req.body;
+  let sortby=req.query.sortby;
+  console.log(sortby)
+  let order=req.query.order;
+  console.log(order);
+  let get=await postmodel.find(que);
+  if(sortby==="postedAt" &&order==="asc")
+  {
+    get.sort((a,b)=>{
+      return a.postedAt-b.postedAt;
+    })
+    res.send(get)
+  }
+  if(sortby==="postedAt" &&order==="desc")
+  {
+    get.sort((a,b)=>{
+      return b.postedAt-a.postedAt;
+    })
+    res.send(get)
+  }
+})
 module.exports={
   postrouter
 }
