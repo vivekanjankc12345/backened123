@@ -7,7 +7,8 @@ const postschema=mongoose.Schema({
    "Level":String,
    "Position":String,
    "Language":String,
-   "Contract":String
+   "Contract":String,
+   "postedAt":Date,
 })
 const postmodel=mongoose.model("jobposting",postschema);
 module.exports={
